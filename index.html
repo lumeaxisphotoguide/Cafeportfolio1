@@ -25,7 +25,9 @@ background:var(--bg);
 color:var(--text);
 scroll-behavior:smooth;
 }
-
+.gallery img{
+    cursor:pointer;
+}
 h1,h2,h3{font-family:"Playfair Display",serif;}
 
 img{
@@ -324,7 +326,38 @@ document.getElementById("form").addEventListener("submit",e=>{
 e.preventDefault();
 alert("Reservation request sent! We'll contact you soon.");
 });
-</script>
+const images = document.querySelectorAll(".gallery img");
+const lightbox = document.getElementById("lightbox");
+const lightboxImg = document.getElementById("lightbox-img");
 
+images.forEach(img=>{
+img.addEventListener("click",()=>{
+lightbox.style.display="flex";
+lightboxImg.src = img.src;
+});
+});
+
+lightbox.addEventListener("click",()=>{
+lightbox.style.display="none";
+});
+</script>
+<div id="lightbox" style="
+position:fixed;
+top:0; left:0;
+width:100%; height:100%;
+background:rgba(0,0,0,0.9);
+display:none;
+justify-content:center;
+align-items:center;
+z-index:2000;
+">
+
+<img id="lightbox-img" style="
+max-width:90%;
+max-height:90%;
+border-radius:8px;
+">
+
+</div>
 </body>
 </html>
